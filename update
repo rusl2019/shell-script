@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+clear
+
+update="sudo apt update"
+upgrade="sudo apt upgrade"
+dist_upgrade="sudo apt dist-upgrade"
+autoremove="sudo apt autoremove"
+
+if [[ $1 = "-y" ]]; then
+    $update -y
+    $upgrade -y
+    $dist_upgrade -y
+    $autoremove -y
+else
+    $update
+    $upgrade
+    $dist_upgrade
+    $autoremove
+fi

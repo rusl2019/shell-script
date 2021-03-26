@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+clear
+
+pdflatex $1 -synctex=1 -interaction=nonstopmode
+
+rm *.aux *.log *.gz *.out

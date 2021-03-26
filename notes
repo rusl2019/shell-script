@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+script_name="notes"
+script_version="0.0.2"
+
+name="catatan"
+date=$(date +"%d-%m-%y")
+opt=$1
+
+if [ -z $opt ];then
+    opt='*'
+elif [ $opt == "-n" ] || [ $opt == "--new" ];then
+    opt=$1
+elif [ $opt == "-a" ] || [ $opt == "--add" ];then
+    opt=$1
+elif [ $opt == "-h" ] || [ $opt == "--help" ];then
+    opt=$1
+elif [ $opt == "-v" ] || [ $opt == "--version" ];then
+    opt=$1
+else
+    opt='*'
+fi
+
+usage(){
+cat <<EOF
+usage: $script_name [option] [some text]
+     
+$script_name $script_version
+     
+option:
+  -n, --new           add date (now) and some text
+  -a, --add           add some text without date
+  -h, --help          show this help message and exit
+  -v, --version       show script version
+
+EOF
+}
+
+case $opt in
+    "-n") 
+        echo "$date" >> $name.txt
+        echo "- $2" >> $name.txt
+        ;;
+    "--new") 
+        echo "$date" >> $name.txt
+        echo "- $2" >> $name.txt
+        ;;
+    "-a")
+        echo "- $2" >> $name.txt
+        ;;
+    "--add")
+        echo "- $2" >> $name.txt
+        ;;
+    "-h")
+        usage && exit 0
+        ;;
+    "--help")
+        usage && exit 0
+        ;;
+    "-v")
+        echo "$script_name $script_version"
+        ;;
+    "--version")
+        echo "$script_name $script_version"
+        ;;
+    "*")
+        echo -e "ERROR: see -h or --help for usage this script"
+        exit 1
+esac
